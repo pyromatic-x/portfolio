@@ -1,0 +1,38 @@
+.greeting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0vw;
+  left: 0;
+  z-index: 100;
+  background-color: white;
+}
+
+.greeting-container.hide-greeting {
+  top: 25vw;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.greeting-text {
+  font-weight: 300;
+  font-size: 4rem;
+  display: inline;
+  transition: 0.5s ease;
+  transform: translateY(-80px);
+  opacity: 0;
+  position: absolute;
+}
+
+.greeting-text.animate-show {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.greeting-text.animate-hide {
+  transform: translateY(80px);
+  opacity: 0;
+}
