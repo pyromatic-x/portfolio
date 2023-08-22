@@ -7,7 +7,7 @@ import "./greeting.css";
 function Greeting() {
   const dispath = useDispatch();
 
-  const delay = 2000;
+  const delay = 1600;
 
   const strings = [
     "welcome person",
@@ -35,7 +35,7 @@ function Greeting() {
               setHideContainer(true);
               setTimeout(() => {
                 dispath(toggleGreetingState());
-              }, delay);
+              }, delay / 10);
             }, delay);
           }
         }, delay * index)

@@ -1,26 +1,26 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Greeting from "./components/greeting/Greeting";
-import Header from "./components/header/Header";
 import Home from "./components/home/Home";
+import { useSelector } from "react-redux";
 
 function App() {
+  const greetingPlayed = useSelector((state) => state.greetingPlayed.value);
+  const [hideGreeting, setHideGreeting] = useState(greetingPlayed);
+
+  useEffect(() => {
+    if (greetingPlayed) {
+      setTimeout(() => {
+        setHideGreeting(true);
+        console.log(hideGreeting);
+      }, 1600 / 8);
+    }
+  });
+
   return (
     <div>
-      <Greeting />
-      <Header />
+      {!hideGreeting && <Greeting />}
       <Home />
     </div>
-  );
-
-  const greetingPlayed = useSelector((state) => state.greetingPlayed.value);
-
-  return greetingPlayed ? (
-    <div>
-      <Header />
-      <Home />
-    </div>
-  ) : (
-    <Greeting />
   );
 }
 

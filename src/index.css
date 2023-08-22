@@ -19,6 +19,7 @@ body {
 
   /* background-color: var(--background); */
   color: var(--text);
+  overflow: hidden;
 }
 
 .avatar {
@@ -26,13 +27,6 @@ body {
 }
 
 .background-gradient {
-  /* background: rgb(231, 160, 147);
-  background: linear-gradient(
-    110deg,
-    rgba(231, 160, 147, 0.5) 0%,
-    rgba(241, 42, 42, 0.5) 50%,
-    rgba(231, 160, 147, 0.5) 100%
-  ); */
   animation: gradient 15s ease infinite;
   background-size: 400% 400%;
 }
