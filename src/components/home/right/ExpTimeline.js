@@ -57,7 +57,7 @@ function ExpTimeline() {
         `flex flex-col items-center transition duration-500 ` + className
       }
     >
-      <h3 className="mb-1">Experience</h3>
+      <h3 className="mb-1 font-bold">Experience</h3>
       <div className="grid gap-1 exp-timeline-container grid-cols-[repeat(12,14px)] mb-4 relative cursor-help">
         <div className="absolute top-0 translate-y-[-54px] translate-x-[20px] text-xs text-white transition duration-500 right-0 bg-purple px-2 py-1 opacity-0 rounded-sm exp-timeline-popover">
           {years + " years " + months + " months " + days + " days"}

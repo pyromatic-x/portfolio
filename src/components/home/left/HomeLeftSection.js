@@ -20,9 +20,9 @@ function HomeLeftSection() {
         `flex flex-col items-center transition duration-500 ` + className
       }
     >
-      <h3>Full Stack Web Developer</h3>
-      <h4>Andrey Teplyakov</h4>
-      <h3 className="mb-6">Startuper, Mentor, Team Lead</h3>
+      <h3 className="text-2xl text-center">Full Stack Web Developer</h3>
+      <h4 className="text-lg font-bold text-center">Andrey Teplyakov</h4>
+      <h3 className="mb-6 text-center">Startuper, Mentor, Team Lead</h3>
       <SkillIcons />
     </div>
   );

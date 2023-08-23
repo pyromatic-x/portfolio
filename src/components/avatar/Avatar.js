@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import avatar_video from "../../images/avatar_video.mov";
 import { useEffect, useRef, useState } from "react";
 import { toggleAvatarAppearedState } from "../../redux/reducers/avatarAppeared";
+import Socials from "../socials/Socials";
 
 function Avatar() {
   const dispath = useDispatch();
@@ -23,7 +24,7 @@ function Avatar() {
 
       timeout = setTimeout(() => {
         dispath(toggleAvatarAppearedState());
-      }, 200);
+      }, 250);
     }
 
     return () => {
@@ -32,19 +33,22 @@ function Avatar() {
   });
 
   return (
-    <video
-      ref={videoRef}
-      src={avatar_video}
-      className={
-        `object-cover rounded-lg justify-self-center transition duration-500 ` +
-        className
-      }
-      width="500"
-      muted={true}
-      autoPlay={false}
-      loop={true}
-      controls={false}
-    />
+    <div className="flex flex-col items-center">
+      <video
+        ref={videoRef}
+        src={avatar_video}
+        className={
+          `object-cover rounded-lg justify-self-center transition duration-500 mb-4 ` +
+          className
+        }
+        width="500"
+        muted={true}
+        autoPlay={false}
+        loop={true}
+        controls={false}
+      />
+      <Socials />
+    </div>
   );
 }
 

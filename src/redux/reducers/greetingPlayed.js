@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const greetingPlayed = createSlice({
   name: "greetingPlayed",
   initialState: {
-    value: true,
+    value: false,
   },
   reducers: {
     toggleGreetingState: (state) => {
