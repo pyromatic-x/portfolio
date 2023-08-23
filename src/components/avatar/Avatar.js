@@ -24,7 +24,7 @@ function Avatar() {
 
       timeout = setTimeout(() => {
         dispath(toggleAvatarAppearedState());
-      }, 250);
+      }, 100);
     }
 
     return () => {
