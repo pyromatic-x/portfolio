@@ -3,8 +3,8 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,html}"],
   theme: {
     extend: {
-      aspectRatio: {
-        portrait: "5 / 6",
+      colors: {
+        purple: "#9810fc",
       },
     },
   },

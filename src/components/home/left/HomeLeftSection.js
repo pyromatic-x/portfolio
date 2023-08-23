@@ -1,11 +1,28 @@
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import SkillIcons from "./SkillIcons";
 
 function HomeLeftSection() {
+  const avatarAppeared = useSelector((state) => state.avatarAppeared.value);
+  const [className, setClassName] = useState(
+    "opacity-0 scale-110 translate-x-[-10rem]"
+  );
+
+  useEffect(() => {
+    if (avatarAppeared) {
+      setClassName("opacity-1 scale-100 translate-x-[0rem]");
+    }
+  });
+
   return (
-    <div>
-      <h3>Andrey Teplyakov</h3>
-      <h4>Full Stack Web Developer</h4>
-      <p className="mb-6">Startuper, Mentor, Team Lead</p>
+    <div
+      className={
+        `flex flex-col items-center transition duration-500 ` + className
+      }
+    >
+      <h3>Full Stack Web Developer</h3>
+      <h4>Andrey Teplyakov</h4>
+      <h3 className="mb-6">Startuper, Mentor, Team Lead</h3>
       <SkillIcons />
     </div>
   );

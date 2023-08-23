@@ -11,7 +11,6 @@ function App() {
     if (greetingPlayed) {
       setTimeout(() => {
         setHideGreeting(true);
-        console.log(hideGreeting);
       }, 1600 / 8);
     }
   });

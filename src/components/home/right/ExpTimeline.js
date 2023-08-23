@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
 function getDifferenceBetweenDates(date1, date2) {
   const startDate = date1;
   const endDate = date2;
@@ -14,61 +17,82 @@ function getDifferenceBetweenDates(date1, date2) {
   const daysDifference = endDate.getDate() - startDate.getDate();
 
   return {
-    months: (inverse ? -1 : 1) * (yearsDifference * 12 + monthsDifference),
+    years: yearsDifference,
+    months: monthsDifference,
+    monthsTotal: (inverse ? -1 : 1) * (yearsDifference * 12 + monthsDifference),
     days: daysDifference,
   };
 }
 
 function ExpTimeline() {
+  const avatarAppeared = useSelector((state) => state.avatarAppeared.value);
+  const [className, setClassName] = useState(
+    "opacity-0 scale-110 translate-x-[10rem]"
+  );
+
+  useEffect(() => {
+    if (avatarAppeared) {
+      setClassName("opacity-1 scale-100 translate-x-[0rem]");
+    }
+  });
+
   const cols = 12;
 
   const averageDaysInMonth = 30;
   const start = new Date("2021-05-17");
   const today = new Date();
 
-  const difference = getDifferenceBetweenDates(start, today);
+  const { years, months, monthsTotal, days } = getDifferenceBetweenDates(
+    start,
+    today
+  );
 
-  const total = difference.months + (cols - (difference.months % cols)) + cols;
-  const active = difference.months;
-  const nonActive = total - difference.months - (difference.days > 0 ? 1 : 0);
+  const total = monthsTotal + (cols - (monthsTotal % cols)) + cols;
+  const active = monthsTotal;
+  const nonActive = total - monthsTotal - (days > 0 ? 1 : 0);
 
   return (
-    <div>
+    <div
+      className={
+        `flex flex-col items-center transition duration-500 ` + className
+      }
+    >
       <h3 className="mb-1">Experience</h3>
-      <div className="grid gap-1 exp-timeline-container grid-cols-[repeat(12,14px)] mb-4 cursor-help">
+      <div className="grid gap-1 exp-timeline-container grid-cols-[repeat(12,14px)] mb-4 relative cursor-help">
+        <div className="absolute top-0 translate-y-[-54px] translate-x-[20px] text-xs text-white transition duration-500 right-0 bg-purple px-2 py-1 opacity-0 rounded-sm exp-timeline-popover">
+          {years + " years " + months + " months " + days + " days"}
+        </div>
         {Array(active)
           .fill(0)
           .map((t, i) => (
-            <div className="exp-timeline-square bg-indigo-500" key={i}></div>
+            <div className="exp-timeline-square bg-purple" key={i}></div>
           ))}
-        {difference.days > 0 && (
+        {days > 0 && (
           <div
-            className="exp-timeline-square days relative bg-gray-300"
+            className="exp-timeline-square days relative non-active"
             style={{
               "--days-width-percent":
-                Number((difference.days / averageDaysInMonth) * 100).toFixed(
-                  2
-                ) + "%",
+                Number((days / averageDaysInMonth) * 100).toFixed(2) + "%",
             }}
           ></div>
         )}
         {Array(nonActive)
           .fill(0)
           .map((t, i) => (
-            <div className="exp-timeline-square bg-gray-300" key={i}></div>
+            <div className="exp-timeline-square non-active" key={i}></div>
           ))}
         {Array(cols)
           .fill(0)
           .map((t, i) => (
             <div
-              className="exp-timeline-square bg-gray-300"
+              className="exp-timeline-square non-active"
               style={{ opacity: 1.25 / (i + 1) }}
               key={i}
             ></div>
           ))}
       </div>
       <div className="flex flex-row items-center">
-        <div className="bg-indigo-500 block me-2 rounded-sm w-[14px] h-[14px]"></div>
+        <div className="bg-purple block me-2 rounded-sm w-[14px] h-[14px]"></div>
         <p className="text-xs m-0 relative top-[1px]">One Month</p>
       </div>
     </div>

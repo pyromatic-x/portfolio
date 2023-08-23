@@ -4,6 +4,15 @@
   border-radius: 2px;
 }
 
+.exp-timeline-square.non-active {
+  background-color: #dedede;
+}
+
+.exp-timeline-container:hover .exp-timeline-popover {
+  opacity: 1;
+  transform: translate(-66px, -54px);
+}
+
 .exp-timeline-square.days::after {
   content: "";
   position: absolute;
@@ -12,5 +21,5 @@
   border-radius: 2px;
   width: var(--days-width-percent);
   height: 14px;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+  background-color: #9810fc;
 }
