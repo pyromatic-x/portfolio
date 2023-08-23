@@ -42,9 +42,10 @@ function Avatar() {
           className
         }
         width="500"
-        muted={true}
+        muted
+        playsInline
         autoPlay={false}
-        loop={true}
+        loop
         controls={false}
       />
       <Socials />

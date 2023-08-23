@@ -48,7 +48,7 @@ function Socials() {
   return (
     <div className={`flex gap-2 transition duration-500 ` + className}>
       {socials.map((social) => (
-        <a href={social.link} target="_blank">
+        <a href={social.link} target="_blank" key={social.alt}>
           <img
             src={social.icon}
             alt={social.alt}
