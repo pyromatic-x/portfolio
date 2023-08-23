@@ -31,7 +31,6 @@ function SkillIcons() {
           className=""
         />
       ))}
-      ...
     </div>
   );
 }

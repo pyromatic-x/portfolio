@@ -1,3 +1,9 @@
 .home-container {
   grid-template-columns: 25% 1fr 25%;
 }
+
+@media all and (max-width: 960px) {
+  .home-container {
+    grid-template-columns: 1fr;
+  }
+}

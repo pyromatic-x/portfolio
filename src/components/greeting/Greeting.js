@@ -53,7 +53,7 @@ function Greeting() {
     >
       {strings.map((string, index) => (
         <h1
-          className={`greeting-text ${
+          className={`greeting-text text-center ${
             current === index ? "animate-show" : ""
           } ${previous === index ? "animate-hide" : ""}`}
           key={string}

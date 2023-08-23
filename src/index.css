@@ -15,9 +15,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   font-family: "Oxanium", cursive;
-
   color: var(--text);
-  overflow: hidden;
 }
 
 .avatar {
