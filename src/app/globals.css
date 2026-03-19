@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+	--background: #FFD9F4;
+	--text: #C02729;
+	/* --background: #B7EFFF;
+	--text: #575757; */
+	/* --background: #721E1E;
+	--text: #E2D797; */
+}
+
+@theme {
+	--color-background: var(--background);
+	--color-text: var(--text);
+}
+
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply antialiased relative text-text bg-background;
+  }
+}

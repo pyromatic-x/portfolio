@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches: ['master']
+
+env:
+  REGISTRY: registry.hub.docker.com
+  IMAGE_PREFIX: pyromatic/portfolio:latest
+  NAME: portfolio
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_PREFIX }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          REGISTRY: ${{ env.REGISTRY }}
+          IMAGE_PREFIX: ${{ env.IMAGE_PREFIX }}
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          envs: REGISTRY,IMAGE_PREFIX,NAME,DOCKER_USERNAME,DOCKER_PASSWORD
+          script: |
+            docker login $REGISTRY -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker service update --with-registry-auth \
+                                  --image $IMAGE_PREFIX \
+                                  projects_$NAME
