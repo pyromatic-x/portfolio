@@ -2,11 +2,6 @@ import { Button } from "@/components/ui/form/button";
 import { Card } from "@/components/ui/shared/card";
 import { Section } from "@/components/ui/shared/section";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/ux/tooltip";
-import {
 	ArrowArcLeftIcon,
 	GithubLogoIcon,
 	GlobeIcon,
@@ -60,8 +55,8 @@ export default function Page() {
 							<b>Websockets</b> дабы сделать поддержку воспоизведения с разных
 							устройств, но в конце я осознал, что в Showcase приложении с
 							одного тестового аккаунта смогут подключиться сразу несколько
-							человек и будет <s>баг</s> беда. Поэтому пришлось отказаться от
-							этой идеи и переписать всё на REST.
+							человек и будет <s>баг</s> беда. Поэтому отказался от этой идеи и
+							переписал всё на REST.
 						</p>
 					</Section>
 
@@ -74,11 +69,12 @@ export default function Page() {
 					>
 						<div className="text-lg flex flex-col gap-4">
 							<p>
-								Три раздельных сервиса под свои задачи - <b>Frontend</b>,
+								Монорепозиторий на Yarn Workspaces - <b>Frontend</b>,{" "}
 								<b>Backend</b>, <b>Media Service</b>
 							</p>
 							<p>
-								<b>Frontend</b> - <b>React</b> + <b>Vite</b>,<b>Mongoose</b>.
+								<b>Frontend</b> - <b>React</b>, <b>TanStack Router</b>,{" "}
+								<b>TanStack Query</b>, <b>Zustand</b>, <b>Tailwind</b>.
 								Авторизация через <b>JWT</b> в httpOnly-куках.
 							</p>
 							<p>
@@ -99,12 +95,11 @@ export default function Page() {
 					<h2 className="font-semibold text-2xl mb-4">Spotify Clone</h2>
 					<div className="flex gap-3 [&_svg]:size-6">
 						<Button
-							tooltip="Пока открыт только Frontend репозиторий"
 							variant="ghost"
 							size="icon"
 							asLink
 							target="_blank"
-							href="https://github.com/pyromatic-x/spotify-clone-frontend"
+							href="https://github.com/pyromatic-x/spotify-clone"
 							className="pointer-events-auto"
 						>
 							<GithubLogoIcon />
